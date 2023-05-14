@@ -1,0 +1,47 @@
+pseudocode for question 5 
+
+ // we assume that the input array contains integers between (0 , arr.length - 1) //
+ 
+function findDouble(arr) {                           
+	
+	int len = arr.length;
+	int realVal = 0;
+	String output = "";	
+	
+	// for loop to iterate through given array 1 time, running time belongs to O(n) //
+	
+	for(int i = 0; i < len; i++) {                   
+		
+		realVal = arr[i];
+		
+		// caclulating real Value of arr[i] by mod len, if needed //
+		
+		if(arr[i] > len - 1)
+			realVal = arr[i] % len;						 
+		
+		// if value of arr[realVal] is bigger than len - 1, we know that 
+		   realVal already appeard, so we add it as a char to the output string //
+		   
+		if(arr[realVal] > len - 1)						
+			output += (intToString(realVal) + ",");		// O(1) //
+		
+		// if value of arr[realVal] is not bigger than len - 1, we need to mark realVal 
+		   by add len to arr[realVal], O(1) // 
+		   
+		else arr[realVal] += len;  					  
+	}
+	
+	return output;
+}
+
+function intToString(integer) { 	// helper function to convert int to String according to ASCII //
+
+	return String(integer + 48);   // O(1) //
+}
+
+
+// space complexity : in this pseudocode we used only C = 3 temp variables : len , output , realVal. 
+	since the value of the constant 'C' = 3 does not depend on the size of the input, 
+our space complexity belongs to O(1) //
+	
+	

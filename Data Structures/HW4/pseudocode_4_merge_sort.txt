@@ -1,0 +1,95 @@
+pseudocode for 4-merge sort:
+
+// Sorts the given integer array in ascending order using 4-mergeSort algorithm //
+
+function 4-mergeSort(array) {
+
+	if( array == null || array.length <= 1 ) return; 	// checking that the inuput array is valid
+	4-mergeSort(array, 0, array.length - 1) 			// using over loading to make the siganture more elegant
+	
+	}
+	
+function 4-mergeSort(arr, start, end) {
+
+	// Base case: if the subarray is small enough, use bubble sort //
+	
+	if(end - start <= 4) {
+		bubbleSort(arr);
+		return;
+		}
+	
+	// Divide the subarray into four smaller subarrays //
+	
+	int mid = start + (end - start) / 2;
+	int leftMid = start + (mid - start) / 2;
+	int rightMid = mid + (end - mid) / 2;
+	
+	// Recursively sort the four smaller subarrays //
+	
+	4-mergeSort(arr, start, leftMid);
+	4-mergeSort(arr, leftMid + 1, mid);
+	4-mergeSort(arr, mid + 1, rightMid);
+	4-mergeSort(arr, rightMid + 1, end);
+	
+	// call helper function to merge the four sorted subarrays into a single sorted array //
+	
+	merge(arr, start, leftMid, mid, rightMid, end);
+	
+	}
+
+// uses overloading to call the standard merge function we saw in class //
+
+function merge(arr, start, leftMid, mid, rightMid, end); { 
+
+	// Merge the two left subarrays into a single sorted subarray //
+	
+	merge(arr, start, leftMid, mid);
+	
+	// Merge the two right subarrays into a single sorted subarray //
+	
+	merge(arr, mid + 1, rightMid, end);
+	
+	// Merge the two sorted subarrays into a single sorted array //
+	
+	merge(arr, start, mid, end);
+	
+	}
+
+// standard merge function we saw in class //
+
+function merge(arr, start, mid, end) {
+
+	int [] temp = new int [end - start + 1];
+	int i = start, j = mid + 1; k = 0;
+	
+	while((i <= mid) && (j <= end)) {
+		if(arr[i] <= arr[j] {
+			temp[k] = arr[i];
+			i++;
+			}
+		else {
+			temp[k] = arr[j];
+			j++;
+			}
+		k++;
+		}
+	while (i <= mid) {
+		temp[k] = arr[i];
+		k++;
+		i++;
+		}
+    while (j <= end) {
+		temp[k] = arr[j];
+		k++;
+		i++;
+		}
+    for (int p = 0; p < temp.length; p++) {
+		arr[start + p] = temp[p];
+		}
+	}
+		
+		
+		
+		
+		
+	
